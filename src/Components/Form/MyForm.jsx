@@ -33,6 +33,7 @@ function MyForm({products, setProducts}) {
                         name='name' 
                         value={formData.name} 
                         onChange={formInputHandler}
+                        required
                     />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -42,7 +43,9 @@ function MyForm({products, setProducts}) {
                         placeholder="Enter a Price"
                         name="price"
                         value={formData.price} 
-                        onChange={formInputHandler}/>
+                        onChange={formInputHandler}
+                        required
+                    />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                     <Form.Check
