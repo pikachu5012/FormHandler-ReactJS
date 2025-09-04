@@ -5,7 +5,7 @@ import "./MyForm.module.css"
 
 function MyForm({products, setProducts}) {
     const [formData, setFormData] = useState({
-        name: "", price: "", isFreeShipping: false
+        name: "", price: "", quantity: "", category: "", isFreeShipping: false
     }); 
     console.log(formData);
     const formInputHandler = (e) => {
@@ -36,13 +36,35 @@ function MyForm({products, setProducts}) {
                         required
                     />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Group className="mb-3" controlId="formBasicPrice">
                     <Form.Label>Product Price</Form.Label>
                     <Form.Control
-                        type="Number" 
+                        type="number" 
                         placeholder="Enter a Price"
                         name="price"
                         value={formData.price} 
+                        onChange={formInputHandler}
+                        required
+                    />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicQuantity">
+                    <Form.Label>Product Quantity</Form.Label>
+                    <Form.Control
+                        type="number" 
+                        placeholder="Enter a Quantity"
+                        name="quantity"
+                        value={formData.quantity} 
+                        onChange={formInputHandler}
+                        required
+                    />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicCategory">
+                    <Form.Label>Product Category</Form.Label>
+                    <Form.Control
+                        type="text" 
+                        placeholder="Enter a Category"
+                        name="category"
+                        value={formData.category} 
                         onChange={formInputHandler}
                         required
                     />

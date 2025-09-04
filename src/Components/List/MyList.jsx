@@ -19,6 +19,8 @@ function MyList({ products, setProducts }) {
     const [editForm, setEditForm] = useState({
         name: '',
         price: '',
+        quantity: '',
+        category: '',
         isFreeShipping: false
     });
 
@@ -28,6 +30,8 @@ function MyList({ products, setProducts }) {
         setEditForm({ //3shan a3ml load ll currant data 
             name: product.name,
             price: product.price,
+            quantity: product.quantity,
+            category: product.category,
             isFreeShipping: product.isFreeShipping
         });
     }
@@ -35,21 +39,21 @@ function MyList({ products, setProducts }) {
     //de btt3ml lma ados 3la el save button
     const saveEdit = (index) => {
         // de 3shan a handle lw mafesh data da5la
-        if (!editForm.name.trim() || !editForm.price) {
-            alert('Please fill in all required fields (Name and Price)');
+        if (!editForm.name.trim() || !editForm.price || !editForm.quantity || !editForm.category) {
+            alert('Please fill in all required fields');
             return;
         }
         const updatedProducts = [...products];//h3ml nos5a mn el array 
         updatedProducts[index] = editForm;//de 3shan t3ml replace ll data bta3t el raw 
         setProducts(updatedProducts);//de ht3ml update ll data
         setEditingIndex(null);//this will exit the edit mode
-        setEditForm({ name: '', price: '', isFreeShipping: false }); //3shan t3ml reset ll edit form
+        setEditForm({ name: '', price: '', quantity: '', category: '', isFreeShipping: false }); //3shan t3ml reset ll edit form
     }
 
     //de btt3ml lma ados 3la el cancel button
     const cancelEdit = () => {
         setEditingIndex(null);
-        setEditForm({ name: '', price: '', isFreeShipping: false });
+        setEditForm({ name: '', price: '', quantity: '', category: '', isFreeShipping: false });
     }
 
     // de bt3ml save ll data that i entered it
@@ -73,6 +77,8 @@ function MyList({ products, setProducts }) {
                             <th>Id</th>
                             <th>Product Name</th>
                             <th>Product Price</th>
+                            <th>Product Quantity</th>
+                            <th>Product Category</th>
                             <th>Free Shipping</th>
                             <th>Action</th>
                         </tr>
@@ -82,7 +88,7 @@ function MyList({ products, setProducts }) {
                             <tr key={index}>
                             <td>{index + 1}</td>
                             
-                            {/* Product Name Column - Shows input field when editing, normal text when not */}
+                            {/* lw days 3le el edit hyzhr input lw la hyfdl zy ma hwa */}
                             <td>
                                 {editingIndex === index ? (
                                     <input
@@ -96,8 +102,6 @@ function MyList({ products, setProducts }) {
                                     product.name
                                 )}
                             </td>
-                            
-                            {/* Product Price Column - Shows number input when editing, price with $ when not */}
                             <td>
                                 {editingIndex === index ? (
                                     <input
@@ -111,8 +115,32 @@ function MyList({ products, setProducts }) {
                                     <>{product.price}<span>$</span></>
                                 )}
                             </td>
-                            
-                            {/* Free Shipping Column - Shows checkbox when editing, badge when not */}
+                            <td>
+                                {editingIndex === index ? (
+                                    <input
+                                        type="number"
+                                        name="quantity"
+                                        value={editForm.quantity}
+                                        onChange={handleEditInputChange}
+                                        className="form-control"
+                                    />
+                                ) : (
+                                    <>{product.quantity}</>
+                                )}
+                            </td>
+                            <td>
+                                {editingIndex === index ? (
+                                    <input
+                                        type="text"
+                                        name="category"
+                                        value={editForm.category}
+                                        onChange={handleEditInputChange}
+                                        className="form-control"
+                                    />
+                                ) : (
+                                    <>{product.category}</>
+                                )}
+                            </td>
                             <td>
                                 {editingIndex === index ? (
                                     <input
@@ -131,11 +159,10 @@ function MyList({ products, setProducts }) {
                                 )}
                             </td>
                             
-                            {/* Action Column - Shows Save/Cancel buttons when editing, Edit/Delete icons when not */}
+                            {/* 3shan el save w el cancel yzhro lma a3m edit */}
                             <td>
                                 <div className='d-flex flex-row justify-content-around'>
                                     {editingIndex === index ? (
-                                        // When editing: show Save and Cancel buttons
                                         <>
                                             <button 
                                                 className="btn btn-success btn-sm"
@@ -151,7 +178,6 @@ function MyList({ products, setProducts }) {
                                             </button>
                                         </>
                                     ) : (
-                                        // When not editing: show Edit and Delete icons
                                         <>
                                             <CiEdit 
                                                 size={"30"} 
