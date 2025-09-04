@@ -4,3 +4,31 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+.formLabel{
+    color: slategrey;
+    position: absolute;
+    top: 15%;
+    left: 2%;
+    transition-property: transform, color;
+    transition-duration: 500ms, 150ms;
+    transition-timing-function: ease-in-out, ease-in-out;
+    transition-delay: 0ms, 0ms;
+}
+.formGroup{
+    position: relative;
+}
+.formGroup:hover .formLabel{
+    transform: translateY(-130%);
+    color: white;
+    transition-delay: 0ms, 500ms;
+}
+.formGroup:focus-within .formLabel{
+    transform: translateY(-130%);
+    color: white;
+    transition-delay: 0ms, 500ms;
+}
+.formGroup:has(input:not(:placeholder-shown)) .formLabel{
+    transform: translateY(-130%);
+    color: white;
+    transition-delay: 0ms, 0ms;
+}

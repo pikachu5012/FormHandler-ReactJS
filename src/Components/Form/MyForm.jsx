@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import "./MyForm.module.css"
+import styles from "./MyForm.module.css"
 
 function MyForm({products, setProducts}) {
     const [formData, setFormData] = useState({
@@ -22,47 +22,47 @@ function MyForm({products, setProducts}) {
     };
     return (
         <>
-        <div style={{ width : "50%", margin:"5% auto"}}>
-            <h1 className='text-center'>ProductForm</h1>
+        <div style={{ width : "50%", margin:"6% auto"}}>
+            <h1 className='text-center mb-4'>ProductForm</h1>
             <Form onSubmit={addNewProduct}>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Product Name</Form.Label>
+                <Form.Group className={`mb-4 ${styles.formGroup}`} controlId="formBasicEmail">
+                    <Form.Label className={`${styles.formLabel}`}>Product Name</Form.Label>
                     <Form.Control
                         type="text" 
-                        placeholder="Enter a Name"
+                        placeholder=" "
                         name='name' 
                         value={formData.name} 
                         onChange={formInputHandler}
                         required
                     />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicPrice">
-                    <Form.Label>Product Price</Form.Label>
+                <Form.Group className={`mb-4 ${styles.formGroup}`} controlId="formBasicPrice">
+                    <Form.Label className={`${styles.formLabel}`}>Product Price</Form.Label>
                     <Form.Control
                         type="number" 
-                        placeholder="Enter a Price"
+                        placeholder=" "
                         name="price"
                         value={formData.price} 
                         onChange={formInputHandler}
                         required
                     />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicQuantity">
-                    <Form.Label>Product Quantity</Form.Label>
+                <Form.Group className={`mb-4 ${styles.formGroup}`} controlId="formBasicQuantity">
+                    <Form.Label className={`${styles.formLabel}`}>Product Quantity</Form.Label>
                     <Form.Control
                         type="number" 
-                        placeholder="Enter a Quantity"
+                        placeholder=" "
                         name="quantity"
                         value={formData.quantity} 
                         onChange={formInputHandler}
                         required
                     />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicCategory">
-                    <Form.Label>Product Category</Form.Label>
+                <Form.Group className={`mb-4 ${styles.formGroup}`} controlId="formBasicCategory" id='form-group'>
+                    <Form.Label className={`${styles.formLabel}`}>Product Category</Form.Label>
                     <Form.Control
                         type="text" 
-                        placeholder="Enter a Category"
+                        placeholder=" "
                         name="category"
                         value={formData.category} 
                         onChange={formInputHandler}
